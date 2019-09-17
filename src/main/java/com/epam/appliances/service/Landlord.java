@@ -1,12 +1,10 @@
 package com.epam.appliances.service;
 
 import com.epam.appliances.model.Appliance;
-import com.epam.appliances.model.AppliancePurpose;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import static com.epam.appliances.model.AppliancePurpose.KITCHEN;
 import static java.util.Comparator.comparing;
@@ -36,7 +34,7 @@ public class Landlord extends Person {
     }
 
     public int getTotalPowerConsumption() {
-        return appliances.stream().mapToInt(Appliance::getPower).sum();
+        return appliances.stream().filter(Appliance::isPlugged).mapToInt(Appliance::getPower).sum();
     }
 
     public List<Appliance> getKitchenApplianceByPower(int min, int max) {

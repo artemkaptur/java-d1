@@ -25,7 +25,7 @@ public class Tenant extends Person {
         this.maxPaymentForFlat = maxPaymentForFlat;
     }
 
-    public Landlord rentACheapestFlat(Set<Landlord> landlords) {
+    public Landlord chooseLandlordWithACheapestFlat(Set<Landlord> landlords) {
         if (landlord == null) {
             landlord = landlords
                     .stream()

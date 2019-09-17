@@ -8,7 +8,7 @@ public enum Color implements Criterion {
     BROWN(165, 42, 42),
     BLUE(0, 0, 255);
 
-    private Color(final Integer red, final Integer green, final Integer blue) {
+    Color(final Integer red, final Integer green, final Integer blue) {
         this.red = red;
         this.green = green;
         this.blue = blue;

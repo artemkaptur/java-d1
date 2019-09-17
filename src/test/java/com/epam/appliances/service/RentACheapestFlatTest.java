@@ -17,7 +17,7 @@ public class RentACheapestFlatTest {
         Set<Landlord> landlords = new HashSet<>();
         landlords.add(landlord);
         landlords.add(landlord2);
-        assertEquals(tenant.rentACheapestFlat(landlords).getMinCostForFlat(), 300);
+        assertEquals(tenant.chooseLandlordWithACheapestFlat(landlords).getMinCostForFlat(), 300);
     }
 
 }
