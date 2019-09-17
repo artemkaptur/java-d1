@@ -1,6 +1,5 @@
 package com.epam.appliances.model;
 
-
 import java.util.Objects;
 
 public abstract class Appliance {

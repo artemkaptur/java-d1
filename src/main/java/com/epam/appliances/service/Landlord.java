@@ -1,12 +1,10 @@
 package com.epam.appliances.service;
 
 import com.epam.appliances.model.Appliance;
-import com.epam.appliances.model.AppliancePurpose;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import static com.epam.appliances.model.AppliancePurpose.KITCHEN;
 import static java.util.Comparator.comparing;
