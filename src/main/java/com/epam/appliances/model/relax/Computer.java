@@ -1,0 +1,88 @@
+package com.epam.appliances.model.relax;
+
+import com.epam.appliances.exception.CannotTurnOnDueToParentalControlException;
+import com.epam.appliances.model.Color;
+import com.epam.appliances.model.TurnOnByTime;
+
+import java.util.Objects;
+
+import static com.epam.appliances.model.AppliancePurpose.RELAX;
+
+public class Computer extends RelaxAppliance implements TurnOnByTime {
+
+    private int screenSize;
+    private int ram;
+    private double cpu;
+
+    public Computer(String title, int power, int weight, Color color) {
+        super(title, RELAX, power, weight, color);
+    }
+
+    public int getScreenSize() {
+        return screenSize;
+    }
+
+    public Computer setScreenSize(int screenSize) {
+        this.screenSize = screenSize;
+        return this;
+    }
+
+    public int getRam() {
+        return ram;
+    }
+
+    public Computer setRam(int ram) {
+        this.ram = ram;
+        return this;
+    }
+
+    public double getCpu() {
+        return cpu;
+    }
+
+    public Computer setCpu(double cpu) {
+        this.cpu = cpu;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Computer computer = (Computer) o;
+        return getScreenSize() == computer.getScreenSize() &&
+                getRam() == computer.getRam() &&
+                getCpu() == computer.getCpu();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getScreenSize(), getRam(), getCpu());
+    }
+
+    @Override
+    public String toString() {
+        return "Computer{" +
+                "screenSize=" + screenSize +
+                ", ram=" + ram +
+                ", cpu=" + cpu +
+                ", isParentalControlOn=" + isParentalControlOn +
+                ", title='" + title + '\'' +
+                ", appliancePurpose=" + appliancePurpose +
+                ", power=" + power +
+                ", weight=" + weight +
+                ", color=" + color +
+                ", isPlugged=" + isPlugged +
+                '}';
+    }
+
+    @Override
+    public void setTheTimer(int hour) throws CannotTurnOnDueToParentalControlException {
+        if (isRelaxAvailable(hour))
+            timer = hour;
+        else
+            throw new CannotTurnOnDueToParentalControlException("Cannot set up the timer on computer due to parental control");
+    }
+
+}

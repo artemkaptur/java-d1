@@ -1,6 +1,6 @@
 package com.epam.appliances.model;
 
-public enum Color implements Criterion {
+public enum Color {
 
     GREY(142, 142, 147),
     WHITE(255, 255, 255),

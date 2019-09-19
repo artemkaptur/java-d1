@@ -1,5 +1,7 @@
 package com.epam.appliances.model;
 
+import com.epam.appliances.exception.CannotTurnOnDueToUnpluggedlException;
+
 import java.util.Objects;
 
 public abstract class Appliance {
@@ -9,7 +11,8 @@ public abstract class Appliance {
     protected int power;
     protected int weight;
     protected Color color;
-    protected boolean isPlugged = false;
+    protected boolean isPlugged;
+    protected boolean isTurnedOn;
 
     public Appliance(String title, AppliancePurpose appliancePurpose, int power, int weight, Color color) {
         this.title = title;
@@ -17,6 +20,8 @@ public abstract class Appliance {
         this.power = power;
         this.weight = weight;
         this.color = color;
+        isPlugged = false;
+        isTurnedOn = false;
     }
 
     public String getTitle() {
@@ -67,8 +72,22 @@ public abstract class Appliance {
         isPlugged = plugged;
     }
 
+    public boolean isTurnedOn() {
+        return isTurnedOn;
+    }
+
+    public void setTurnedOn(boolean turnedOn) {
+        isTurnedOn = turnedOn;
+    }
+
     public void plug() {
-        this.isPlugged = true;
+        isPlugged = true;
+    }
+
+    public void turnOn() throws CannotTurnOnDueToUnpluggedlException {
+        if (!isPlugged)
+            throw new CannotTurnOnDueToUnpluggedlException("Cannot to turn on the appliance due to it is unplugged");
+        else isTurnedOn = true;
     }
 
     @Override
@@ -79,6 +98,7 @@ public abstract class Appliance {
         return getPower() == appliance.getPower() &&
                 getWeight() == appliance.getWeight() &&
                 isPlugged() == appliance.isPlugged() &&
+                isTurnedOn() == appliance.isTurnedOn() &&
                 getTitle().equals(appliance.getTitle()) &&
                 getAppliancePurpose() == appliance.getAppliancePurpose() &&
                 getColor() == appliance.getColor();
@@ -86,7 +106,7 @@ public abstract class Appliance {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTitle(), getAppliancePurpose(), getPower(), getWeight(), getColor(), isPlugged());
+        return Objects.hash(getTitle(), getAppliancePurpose(), getPower(), getWeight(), getColor(), isPlugged(), isTurnedOn());
     }
 
     @Override
@@ -98,6 +118,7 @@ public abstract class Appliance {
                 ", weight=" + weight +
                 ", color=" + color +
                 ", isPlugged=" + isPlugged +
+                ", isTurnedOn=" + isTurnedOn +
                 '}';
     }
 
