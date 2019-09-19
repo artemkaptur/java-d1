@@ -34,7 +34,7 @@ public class Landlord extends Person {
     }
 
     public int getTotalPowerConsumption() {
-        return appliances.stream().mapToInt(Appliance::getPower).sum();
+        return appliances.stream().filter(Appliance::isPlugged).mapToInt(Appliance::getPower).sum();
     }
 
     public List<Appliance> getKitchenApplianceByPower(int min, int max) {

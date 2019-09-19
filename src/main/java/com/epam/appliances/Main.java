@@ -22,12 +22,10 @@ public class Main {
         landlords.add(landlord);
         landlords.add(landlord2);
 
-        Landlord tenantsLandlord = tenant.rentACheapestFlat(landlords);
+        Landlord tenantsLandlord = tenant.chooseLandlordWithACheapestFlat(landlords);
 
         Appliance coffeeMachine = new CoffeeMachine("Coffee machine", 1500, 900, Color.BLACK);
-        coffeeMachine.plug();
         Appliance lawnMower = new LawnMower("Lawn Mower", 5000, 11000, Color.BLUE);
-        lawnMower.plug();
         Appliance computer = new Computer("Computer", 3000, 6000, Color.GREY);
 
         tenantsLandlord = landlord.buyAppliance(coffeeMachine)
