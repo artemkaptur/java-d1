@@ -8,7 +8,7 @@ import java.util.Objects;
 
 import static com.epam.appliances.model.AppliancePurpose.RELAX;
 
-public class TV extends RelaxAppliance implements TurnOnByTime {
+public class TV extends RelaxAppliance {
 
     private int screenSize;
     private boolean isFourK;
@@ -33,6 +33,10 @@ public class TV extends RelaxAppliance implements TurnOnByTime {
     public TV setFourK(boolean fourK) {
         isFourK = fourK;
         return this;
+    }
+
+    public void setTheTimer(int hour, TurnOnByTime turnOnByTime) throws CannotTurnOnDueToParentalControlException {
+        turnOnByTime.setTheTimer(this, hour);
     }
 
     @Override
@@ -63,14 +67,6 @@ public class TV extends RelaxAppliance implements TurnOnByTime {
                 ", color=" + color +
                 ", isPlugged=" + isPlugged +
                 '}';
-    }
-
-    @Override
-    public void setTheTimer(int hour) throws CannotTurnOnDueToParentalControlException {
-        if (isRelaxAvailable(hour))
-            timer = hour;
-        else
-            throw new CannotTurnOnDueToParentalControlException("Cannot set up the timer on TV due to parental control");
     }
 
 }
