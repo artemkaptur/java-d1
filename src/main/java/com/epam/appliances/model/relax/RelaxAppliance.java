@@ -16,6 +16,14 @@ public abstract class RelaxAppliance extends Appliance {
         isParentalControlOn = false;
     }
 
+    public int getTimer() {
+        return timer;
+    }
+
+    public void setTimer(int timer) {
+        this.timer = timer;
+    }
+
     public void toggleParentalControl() {
         isParentalControlOn = !isParentalControlOn;
     }

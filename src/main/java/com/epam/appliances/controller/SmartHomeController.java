@@ -1,5 +1,6 @@
 package com.epam.appliances.controller;
 
+import com.epam.appliances.annotations.ThisCodeSmells;
 import com.epam.appliances.model.Appliance;
 
 import java.util.ArrayList;
@@ -30,10 +31,19 @@ public class SmartHomeController {
         return this;
     }
 
+    /**
+     * @deprecated use {@link #getCurrentTotalPowerConsumption()} instead
+     */
+    @Deprecated // Task 1
+    public int getTotalPowerConsumption() {
+        return appliances.stream().mapToInt(Appliance::getPower).sum();
+    }
+
     public int getCurrentTotalPowerConsumption() {
         return appliances.stream().filter(Appliance::isPlugged).mapToInt(Appliance::getPower).sum();
     }
 
+    @ThisCodeSmells(reviewer = "Vanya")
     public List<Appliance> getCookingAppliancesByPower(int min, int max) {
         return appliances.stream()
                 .filter(a -> a.getAppliancePurpose() == COOKING)
